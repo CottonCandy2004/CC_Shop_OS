@@ -8,8 +8,7 @@
 
 void SetColor(UINT uFore, UINT uBack)
 {
-    HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleTextAttribute(handle, uFore + uBack * 0x10);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), uFore + uBack * 0x10);
 }
 
 void HideConsoleCursor()
@@ -24,7 +23,7 @@ void ShowConsoleCursor()
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursor_info);
 }
 
-void flush(char *notice, char **arr, int length, int *choice)
+void flush(char *notice, char **arr, int length, int *choice, char *result, int *result_colour)
 {
     system("cls");
     SetColor(15, 0);
@@ -42,15 +41,17 @@ void flush(char *notice, char **arr, int length, int *choice)
             printf("%s\n", arr[i]);
         }
     }
+    SetColor(*result_colour, 0);
+    printf("\n%s\n", result);
 }
 
-int ui_choice(char *notice, char **arr, int length)
+int ui_choice(char *notice, char **arr, int length, char *result, int *result_colour)
 {
     HideConsoleCursor();
     int choice = 0;
     while (1)
     {
-        flush(notice, arr, length, &choice);
+        flush(notice, arr, length, &choice, result, result_colour);
         int key = getch();
         if (key == 224)
         {
