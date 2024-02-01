@@ -15,23 +15,37 @@ struct vip *register_vip()
     vip = (struct vip *)malloc(sizeof(struct vip));
     init_vip(vip);
     system("cls");
-    printf("\n");
     while (1)
     {
-        printf("请输入会员姓名：");
-        if (step == 0)
+        printf("\n请输入会员姓名：");
+        if (step == 0 || step == 2)
         {
             fgets(vip->name, 20, stdin);
-            step = 1;
             char *find = strchr(vip->name, '\n');
             if (find)
                 *find = '\0';
+            if (vip->name[0] == '\0')
+            {
+                system("cls");
+                SetColor(4, 0);
+                printf("请输入会员姓名！");
+                SetColor(15, 0);
+                step = 2;
+                continue;
+            }
             fflush(stdin);
         }
         else
         {
             printf("%s\n", vip->name);
         }
+        if (step == 2)
+        {
+            system("cls");
+            step = 1;
+            continue;
+        }
+        step = 1;
         printf("请输入会员电话：");
         scanf("%lld", &vip->phone_number);
         fflush(stdin);
@@ -39,7 +53,7 @@ struct vip *register_vip()
         {
             system("cls");
             SetColor(4, 0);
-            printf("电话号码错误，请重新输入！\n");
+            printf("电话号码错误，请重新输入！");
             SetColor(15, 0);
             continue;
         }
