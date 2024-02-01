@@ -17,13 +17,19 @@ void SetColor(UINT uFore, UINT uBack)
 
 void HideConsoleCursor()
 {
-    CONSOLE_CURSOR_INFO cursor_info = {1, 0};
-    SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursor_info);
+    CONSOLE_CURSOR_INFO cursor_info;
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    GetConsoleCursorInfo(hConsole, &cursor_info);
+    cursor_info.bVisible = FALSE;
+    SetConsoleCursorInfo(hConsole, &cursor_info);
 }
 
 void ShowConsoleCursor()
 {
-    CONSOLE_CURSOR_INFO cursor_info = {1, 1};
+    CONSOLE_CURSOR_INFO cursor_info;
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    GetConsoleCursorInfo(hConsole, &cursor_info);
+    cursor_info.bVisible = TRUE;
     SetConsoleCursorInfo(GetStdHandle(STD_OUTPUT_HANDLE), &cursor_info);
 }
 

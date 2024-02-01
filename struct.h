@@ -24,5 +24,6 @@ void init_vip(struct vip *vip)
     vip->last_consume_day.year = 1970;
     vip->last_consume_day.month = 1;
     vip->last_consume_day.day = 1;
+    vip->name[0] = '\0';
 }
 #endif

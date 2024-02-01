@@ -13,8 +13,6 @@ int ui_re_choice(char *notice, char **arr, int length, char *result, int *result
 void orginize_input(int *choice, int *satus, const int *length);
 int ui_choice(char *notice, char **arr, int length);
 
-
-
 void flush(char *notice, char **arr, int length, int *choice)
 {
     system("cls");

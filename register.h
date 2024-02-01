@@ -8,6 +8,7 @@
 #include <string.h>
 #include "ui_terminal.h"
 
+struct vip *register_vip();
 struct vip *register_vip()
 {
     int step = 0;
@@ -18,6 +19,7 @@ struct vip *register_vip()
     while (1)
     {
         printf("\n请输入会员姓名：");
+        ShowConsoleCursor();
         if (step == 0 || step == 2)
         {
             fgets(vip->name, 20, stdin);
@@ -61,6 +63,7 @@ struct vip *register_vip()
         {
             system("cls");
             SetColor(10, 0);
+            HideConsoleCursor();
             printf("录入成功！");
             SetColor(15, 0);
             break;
