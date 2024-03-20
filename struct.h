@@ -13,7 +13,7 @@ struct vip
     unsigned long long phone_number;
     char name[20];
     struct date last_consume_day;
-    int total_consume;
+    double total_consume;
 };
 
 void init_vip(struct vip *vip)

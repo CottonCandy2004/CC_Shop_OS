@@ -19,8 +19,8 @@ void vip_msg(char *msg, struct vip *vip, int serch_id)
     strcat(msg, "\n会员电话：");
     strcat(msg, phone_number_str);
     strcat(msg, "\n会员消费总额：");
-    char total_consume_str[sizeof(int) + 1];
-    sprintf(total_consume_str, "%d", vip[serch_id].total_consume);
+    char total_consume_str[sizeof(double) + 1];
+    sprintf(total_consume_str, "%lf", vip[serch_id].total_consume);
     strcat(msg, total_consume_str);
     strcat(msg, "\n会员最后消费时间：");
     char last_consume_day_str[12];
