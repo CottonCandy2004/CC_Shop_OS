@@ -8,11 +8,9 @@
 #include "ui.h"
 #include <string.h>
 #include "viplib.h"
-void deregister(struct vip *vip, int list_length);
+int deregister(struct vip *vip, int list_length);
 int is_in_list(struct vip *vip, int list_length, unsigned long long phone_number);
 void del_vip(struct vip *vip, int *list_length, int id);
-
-
 
 void del_vip(struct vip *vip, int *list_length, int id)
 {
@@ -30,11 +28,9 @@ void del_vip(struct vip *vip, int *list_length, int id)
     // Sleep(1000);
 }
 
-
-
-void deregister(struct vip *vip, int list_length)
+int deregister(struct vip *vip, int list_length)
 {
-    unsigned long long phone_number;
+    unsigned long long phone_number = 1;
     system("cls");
     while (1)
     {
@@ -42,7 +38,19 @@ void deregister(struct vip *vip, int list_length)
         ShowConsoleCursor();
         scanf("%lld", &phone_number);
         if (phone_number == 0)
-            return;
+        {
+            fflush(stdin);
+            return -1;
+        }
+        else if (phone_number == 1)
+        {
+            system("cls");
+            SetColor(4, 0);
+            printf("手机号格式错误，请重新输入！");
+            fflush(stdin);
+            SetColor(15, 0);
+            continue;
+        }
         int serch_id = is_in_list(vip, list_length, phone_number);
         if (serch_id == -1)
         {
@@ -50,6 +58,7 @@ void deregister(struct vip *vip, int list_length)
             SetColor(4, 0);
             printf("手机号不存在，请重新输入！");
             SetColor(15, 0);
+            fflush(stdin);
             continue;
         }
         else
@@ -67,7 +76,7 @@ void deregister(struct vip *vip, int list_length)
                 SetColor(15, 0);
                 fflush(stdin);
                 // system("pause");
-                return;
+                return 200;
             }
             else
             {
@@ -77,7 +86,7 @@ void deregister(struct vip *vip, int list_length)
                 SetColor(15, 0);
                 fflush(stdin);
                 // system("pause");
-                return;
+                return -1;
             }
         }
     }

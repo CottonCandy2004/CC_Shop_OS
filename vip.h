@@ -15,8 +15,8 @@ void vip_main()
     int load_satus = load_vip_data(vip_data, &length);
     if (load_satus == -1)
         return;
-    vip_data+=length;
-    char *vip_choice[4] = {"1.注册新会员", "2.注销已有会员", "3.列出会员列表", "4.退出"};
+    vip_data += length;
+    char *vip_choice[4] = {"1.注册新会员", "2.注销已有会员", "3.列出会员列表", "4.返回"};
     while (1)
     {
         int ch = ui_choice("会员管理", vip_choice, 4);
@@ -26,7 +26,7 @@ void vip_main()
             int satus = register_vip(length, vip, vip_data_head);
             if (satus == 0)
             {
-                vip->id=length+1;
+                vip->id = length + 1;
                 *vip_data = *vip;
                 vip_data++;
                 length++;
@@ -36,10 +36,13 @@ void vip_main()
         }
         else if (ch == 1)
         {
-            deregister(vip_data_head, length);
-            length--;
-            vip_data--;
-            changed = 1;
+            int satus = deregister(vip_data_head, length);
+            if (satus == 200)
+            {
+                length--;
+                vip_data--;
+                changed = 1;
+            }
         }
         else if (ch == 2)
         {
