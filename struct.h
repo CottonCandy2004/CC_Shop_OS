@@ -26,4 +26,11 @@ void init_vip(struct vip *vip)
     vip->last_consume_day.day = 1;
     vip->name[0] = '\0';
 }
+struct FREIGHT
+{
+    char name[20];
+    int price;
+    int code;
+};
+typedef struct FREIGHT freight;
 #endif
