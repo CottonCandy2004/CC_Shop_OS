@@ -127,6 +127,7 @@ int ui_choice(char *notice, char **arr, int length)
         orginize_input(&choice, &satus, &length);
         if (satus == 1)
         {
+            system("cls");
             return choice;
         }
     }
