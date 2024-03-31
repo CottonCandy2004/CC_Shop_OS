@@ -57,9 +57,9 @@ int load_vip_data(struct vip *vip_data, int *length)
         fp = fopen("vip.dat", "w");
         if (fp == NULL)
         {
-            system("pause");
+            system("cls");
             SetColor(4, 0);
-            printf("磁盘读写错误，请检查程序是否有相应目录的读写权限！");
+            printf("磁盘读写错误，请检查程序是否有相应目录的读写权限！\n");
             SetColor(15, 0);
             system("pause");
             return -1;
