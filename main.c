@@ -3,33 +3,49 @@
 #include <stdlib.h>
 #include "struct.h"
 #include "vip.h"
+#include "auth.h"
+
 int main()
 {
-    // ui测试代码
-    char *empty="";
-    char *Error1="尚未实现";
-    char *notice1="请选择您的操作：";
-    char *choice1="1.会员管理";
-    char *choice2="2.货物管理";
-    char *choice3="3.退出";
-    char* choice[3]={choice1,choice2,choice3};
-    char *result=empty;
-    int result_colour=0;
-    int ch=ui_choice(notice1,choice,3);
-    while(1)
+    int status = auth();
+    while (status != 200)
     {
-        if(ch==0)
+        if (status == -2)
+        {
+            SetColor(4, 0);
+            printf(" X\n密码错误，请重新输入\n");
+            Sleep(1000);
+            SetColor(15, 0);
+        }
+        if (status == -1)
+            return 0;
+        status = auth();
+    }
+    // ui测试代码
+    char *empty = "";
+    char *Error1 = "尚未实现";
+    char *notice1 = "请选择您的操作：";
+    char *choice1 = "1.会员管理";
+    char *choice2 = "2.货物管理";
+    char *choice3 = "3.退出";
+    char *choice[3] = {choice1, choice2, choice3};
+    char *result = empty;
+    int result_colour = 0;
+    int ch = ui_choice(notice1, choice, 3);
+    while (1)
+    {
+        if (ch == 0)
         {
             vip_main();
-            ch=ui_choice(notice1,choice,3);
+            ch = ui_choice(notice1, choice, 3);
         }
-        else if(ch==1)
+        else if (ch == 1)
         {
-            result=Error1;
-            result_colour=4;
-            ch=ui_re_choice(notice1,choice,3,result,&result_colour);
+            result = Error1;
+            result_colour = 4;
+            ch = ui_re_choice(notice1, choice, 3, result, &result_colour);
         }
-        else if(ch==2)
+        else if (ch == 2)
         {
             printf("退出\n");
             exit(0);
