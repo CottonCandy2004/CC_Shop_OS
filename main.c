@@ -42,8 +42,7 @@ int main()
         else if (ch == 1)
         {
             result = Error1;
-            result_colour = 4;
-            ch = ui_re_choice(notice1, choice, 3, result, &result_colour);
+            ch = ui_re_choice(notice1, choice, 3, result, 4);
         }
         else if (ch == 2)
         {

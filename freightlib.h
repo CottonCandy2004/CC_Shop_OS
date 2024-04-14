@@ -52,4 +52,12 @@ int save_stock_data(freight *stock_data_head, int *length)
     SetColor(15, 0);
     system("pause");
 }
+
+int silent_save_stock_data(freight *stock_data_head, int *length)
+{
+    FILE *fp2;
+    fp2 = fopen("stock.dat", "w");
+    fwrite(stock_data_head, sizeof(freight), *length, fp2);
+    fclose(fp2);
+}
 #endif

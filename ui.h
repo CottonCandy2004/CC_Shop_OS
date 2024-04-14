@@ -9,7 +9,7 @@
 
 void flush(char *notice, char **arr, int length, int *choice);
 void result_attach(char *result, int *result_colour, char *notice, char **arr, int length, int *choice);
-int ui_re_choice(char *notice, char **arr, int length, char *result, int *result_colour);
+int ui_re_choice(char *notice, char **arr, int length, char *result, int result_colour);
 void orginize_input(int *choice, int *satus, const int *length);
 int ui_choice(char *notice, char **arr, int length);
 
@@ -40,13 +40,13 @@ void result_attach(char *result, int *result_colour, char *notice, char **arr, i
     printf("\n%s\n", result);
 }
 
-int ui_re_choice(char *notice, char **arr, int length, char *result, int *result_colour)
+int ui_re_choice(char *notice, char **arr, int length, char *result, int result_colour)
 {
     HideConsoleCursor();
     int choice = 0, satus = 0;
     while (1)
     {
-        result_attach(result, result_colour, notice, arr, length, &choice);
+        result_attach(result, &result_colour, notice, arr, length, &choice);
         orginize_input(&choice, &satus, &length);
         if (satus == 1)
         {
