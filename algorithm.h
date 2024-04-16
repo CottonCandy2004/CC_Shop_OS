@@ -5,7 +5,7 @@
 
 void sort_freight(freight *head,freight *tail)
 {
-    if(head==tail) return;
+    if(head>=tail) return;
     freight *p,*q=head+1;
     for(p=head+1;p!=tail+1;p++)
     {
