@@ -123,6 +123,7 @@ int ui_choice(char *notice, char **arr, int length)
     int choice = 0, satus = 0;
     while (1)
     {
+        fflush(stdin);
         flush(notice, arr, length, &choice);
         orginize_input(&choice, &satus, &length);
         if (satus == 1)

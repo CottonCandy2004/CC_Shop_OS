@@ -7,25 +7,21 @@
 #include "stdio.h"
 void vip_msg(char *msg, struct vip *vip, int serch_id)
 {
-    char phone_number_str[12];
-    sprintf(phone_number_str, "%lld", vip[serch_id].phone_number);
-    strcat(msg, phone_number_str);
-    strcat(msg, "\n该会员的登记信息如下：\n\n会员id：");
-    char id_str[sizeof(int) + 1];
-    sprintf(id_str, "%d", vip[serch_id].id);
-    strcat(msg, id_str);
-    strcat(msg, "\n会员姓名：");
-    strcat(msg, vip[serch_id].name);
-    strcat(msg, "\n会员电话：");
-    strcat(msg, phone_number_str);
-    strcat(msg, "\n会员消费总额：");
-    char total_consume_str[sizeof(double) + 1];
-    sprintf(total_consume_str, "%lf", vip[serch_id].total_consume);
-    strcat(msg, total_consume_str);
-    strcat(msg, "\n会员最后消费时间：");
-    char last_consume_day_str[12];
-    sprintf(last_consume_day_str, "%d-%d-%d\n", vip[serch_id].last_consume_day.year, vip[serch_id].last_consume_day.month, vip[serch_id].last_consume_day.day);
-    strcat(msg, last_consume_day_str);
+    int length = strlen(msg);
+    char *tail = msg + length;
+    sprintf(tail, "\n该会员的登记信息如下：\n\n"
+                  "会员id：%d\n"
+                  "会员姓名：%s\n"
+                  "会员电话：%lld\n"
+                  "会员消费总额：%lf\n"
+                  "会员最后消费时间：%d-%d-%d\n",
+            vip[serch_id].id,
+            vip[serch_id].name,
+            vip[serch_id].phone_number,
+            vip[serch_id].total_consume,
+            vip[serch_id].last_consume_day.year,
+            vip[serch_id].last_consume_day.month,
+            vip[serch_id].last_consume_day.day);
 }
 
 int is_in_list(struct vip *vip, int list_length, unsigned long long phone_number)

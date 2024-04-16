@@ -22,14 +22,8 @@ int main()
             return 0;
         status = auth();
     }
-    char *empty = "";
-    char *Error1 = "尚未实现";
     char *notice1 = "请选择您的操作：";
-    char *choice1 = "1.会员管理";
-    char *choice2 = "2.货物管理";
-    char *choice3 = "3.退出";
-    char *choice[3] = {choice1, choice2, choice3};
-    char *result = empty;
+    char *choice[3] = {"1.会员管理", "2.货物管理", "3.退出"};
     int result_colour = 0;
     while (1)
     {
