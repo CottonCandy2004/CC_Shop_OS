@@ -16,10 +16,10 @@ void vip_main()
     if (load_satus == -1)
         return;
     vip_data += length;
-    char *vip_choice[4] = {"1.注册新会员", "2.注销已有会员", "3.列出会员列表", "4.返回"};
+    char *vip_choice[5] = {"1.注册新会员", "2.注销已有会员", "3.列出会员列表", "4.从csv导入数据", "5.返回"};
     while (1)
     {
-        int ch = ui_choice("会员管理", vip_choice, 4);
+        int ch = ui_choice("会员管理", vip_choice, 5);
         if (ch == 0)
         {
             struct vip *vip = (struct vip *)malloc(sizeof(struct vip));
@@ -49,6 +49,26 @@ void vip_main()
             show_vip(vip_data_head, length);
         }
         else if (ch == 3)
+        {
+            char *choice[2] = {"否", "是"};
+            switch (ui_choice("该操作会清空所有现有数据，是否继续？", choice, 2))
+            {
+            case 0:
+                SetColor(4,0);
+                printf("已取消\n");
+                SetColor(15,0);
+                break;
+            case 1:
+                if (import_from_csv(vip_data_head, &length) == 0)
+                {
+                    vip_data = vip_data_head;
+                    vip_data += length;
+                    changed = 1;
+                }
+                break;
+            }
+        }
+        else if (ch == 4)
         {
             if (changed == 1)
             {
