@@ -26,7 +26,7 @@ void vip_main()
             int satus = register_vip(length, vip, vip_data_head);
             if (satus == 0)
             {
-                vip->id = length + 1;
+                vip->id = (vip_data - 1)->id + 1;
                 *vip_data = *vip;
                 vip_data++;
                 length++;
@@ -54,9 +54,9 @@ void vip_main()
             switch (ui_choice("该操作会清空所有现有数据，是否继续？", choice, 2))
             {
             case 0:
-                SetColor(4,0);
+                SetColor(4, 0);
                 printf("已取消\n");
-                SetColor(15,0);
+                SetColor(15, 0);
                 break;
             case 1:
                 if (import_from_csv(vip_data_head, &length) == 0)
