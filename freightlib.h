@@ -8,10 +8,10 @@
 int load_stock_data(freight *stock_data, int *length)
 {
     FILE *fp;
-    fp = fopen("stock.dat", "r");
+    fp = fopen("stock.dat", "rb");
     if (fp == NULL)
     {
-        fp = fopen("stock.dat", "w");
+        fp = fopen("stock.dat", "wb");
         if (fp == NULL)
         {
             system("cls");
@@ -43,7 +43,7 @@ int load_stock_data(freight *stock_data, int *length)
 int save_stock_data(freight *stock_data_head, int *length)
 {
     FILE *fp2;
-    fp2 = fopen("stock.dat", "w");
+    fp2 = fopen("stock.dat", "wb");
     fwrite(stock_data_head, sizeof(freight), *length, fp2);
     fclose(fp2);
     system("cls");
@@ -56,7 +56,7 @@ int save_stock_data(freight *stock_data_head, int *length)
 int silent_save_stock_data(freight *stock_data_head, int *length)
 {
     FILE *fp2;
-    fp2 = fopen("stock.dat", "w");
+    fp2 = fopen("stock.dat", "wb");
     fwrite(stock_data_head, sizeof(freight), *length, fp2);
     fclose(fp2);
 }
