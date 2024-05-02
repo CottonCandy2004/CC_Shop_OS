@@ -4,6 +4,8 @@
 #include "ui.h"
 #include "struct.h"
 #include "ui_terminal.h"
+#include "freightlib.h"
+
 int main()
 {
     char *notice1 = "请选择您的操作：";
@@ -18,13 +20,14 @@ int main()
     char *choice7 = "5.售价";
     char *choice8 = "Y.是";
     char *choice9 = "N.否";
-    char *choice0[5] = {choice3, choice4, choice5, choice6, choice7};
-    char *choice00[2] = {choice8, choice9};
-    char *choice[2] = {choice1, choice2};
+    char *freight_choice1[2] = {choice1, choice2};
+    char *freight_choice2[5] = {choice3, choice4, choice5, choice6, choice7};
+    char *freight_choice3[2] = {choice8, choice9};
     printf("请问您要引进多少种货品？\n");
-    int n, i, q, ch, ch1, ch2;
+    int n, i, q, ch, ch1, ch2,x;
     scanf("%d", &n);
     freight *p = (freight *)malloc(n * sizeof(freight));
+
     for (i = 0; i < n; i++)
     {
         q = 0;
@@ -35,7 +38,7 @@ int main()
         {
             printf("货物编号不能为负数，请确认输入是否正确，并重新输入\n");
             system("pause");
-            printf("货品的进货数量:");
+            printf("货品编号:");
             scanf("%d", &p[i].EAN);
         }
         while (i > q)
@@ -92,13 +95,13 @@ int main()
         printf("编号:%ld\n名称:%s\n进货数量:%d\n进货价:%d\n售价:%d\n", p[i].EAN, p[i].name, p[i].stock, p[i].purchase_price, p[i].sale_price);
         system("pause");
         int result_colour = 0;
-        ch = ui_choice(notice1, choice, 2);
+        ch = ui_choice(notice1, freight_choice1, 2);
         if (ch == 1)
         {
             ch2 = 0;
             for (; ch2 == 0;)
             {
-                ch1 = ui_choice(notice2, choice0, 5);
+                ch1 = ui_choice(notice2, freight_choice2, 5);
                 switch (ch1)
                 {
                 case 0:
@@ -179,8 +182,9 @@ int main()
                 system("cls");
                 printf("修改后数据如下\n编号:%ld\n名称:%s\n进货数量:%d\n进货价:%d\n售价:%d\n", p[i].EAN, p[i].name, p[i].stock, p[i].purchase_price, p[i].sale_price);
                 system("pause");
-                ch2 = ui_choice(notice3, choice00, 2);
+                ch2 = ui_choice(notice3, freight_choice3, 2);
             }
         }
     }
+    x=save_stock_data(p,&n);
 }
