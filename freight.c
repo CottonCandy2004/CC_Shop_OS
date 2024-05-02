@@ -176,6 +176,7 @@ int main()
                     }
                     break;
                 }
+                system("cls");
                 printf("修改后数据如下\n编号:%ld\n名称:%s\n进货数量:%d\n进货价:%d\n售价:%d\n", p[i].EAN, p[i].name, p[i].stock, p[i].purchase_price, p[i].sale_price);
                 system("pause");
                 ch2 = ui_choice(notice3, choice00, 2);
