@@ -44,6 +44,15 @@ int save_stock_data(freight *stock_data_head, int *length)
 {
     FILE *fp2;
     fp2 = fopen("stock.dat", "wb");
+    if (fp2 == NULL)
+    {
+        system("cls");
+        SetColor(4, 0);
+        printf("磁盘读写错误，请检查程序是否有相应目录的读写权限！\n");
+        SetColor(15, 0);
+        system("pause");
+        return -1;
+    }
     fwrite(stock_data_head, sizeof(freight), *length, fp2);
     fclose(fp2);
     system("cls");

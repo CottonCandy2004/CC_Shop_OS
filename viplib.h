@@ -87,10 +87,19 @@ int save_vip_data(struct vip *vip_data_head, int *length)
 {
     FILE *fp2;
     fp2 = fopen("vip.dat", "wb");
+    if (fp2 == NULL)
+    {
+        system("cls");
+        SetColor(4, 0);
+        printf("磁盘读写错误，请检查程序是否有相应目录的读写权限！\n");
+        SetColor(15, 0);
+        system("pause");
+        return -1;
+    }
     for (int i = 0; i < *length; i++)
     {
         fwrite(vip_data_head, sizeof(struct vip), 1, fp2);
-        vip_data_head ++;
+        vip_data_head++;
     }
     fclose(fp2);
     system("cls");
