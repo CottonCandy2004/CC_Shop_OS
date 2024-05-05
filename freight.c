@@ -49,7 +49,7 @@ int main()
         printf("请输入\n第%d种货品的编号:", (i + 1));
         scanf("%lld", &p[i].EAN);
         buff = getchar();
-        if (buff != '\n' || p[i].EAN < 1e13 || p[i].EAN >= 1e14)
+        if (buff != '\n' || p[i].EAN < 1e12 || p[i].EAN >= 1e13)
             p[i].EAN = 0;
         while (p[i].EAN <= 0)
         {
@@ -60,7 +60,7 @@ int main()
             printf("货品编号:");
             scanf("%lld", &p[i].EAN);
             buff = getchar();
-            if (buff != '\n' || p[i].EAN < 1e13 || p[i].EAN >= 1e14)
+            if (buff != '\n' || p[i].EAN < 1e12 || p[i].EAN >= 1e13)
                 p[i].EAN = 0;
         }
         while (i > q)
@@ -72,7 +72,7 @@ int main()
                 printf("重新输入编号\n");
                 scanf("%lld", &p[i].EAN);
                 buff = getchar();
-                if (buff != '\n' || p[i].EAN < 1e13 || p[i].EAN >= 1e14)
+                if (buff != '\n' || p[i].EAN < 1e12 || p[i].EAN >= 1e13)
                 {
                     p[i].EAN = 0;
                     goto EANER;
@@ -173,7 +173,7 @@ int main()
                     printf("请重新输入货品的编号\n");
                     scanf("%lld", &p[i].EAN);
                     buff = getchar();
-                    if (buff != '\n' || p[i].EAN < 1e13 || p[i].EAN >= 1e14)
+                    if (buff != '\n' || p[i].EAN < 1e12 || p[i].EAN >= 1e13)
                         p[i].EAN = 0;
                     while (p[i].EAN <= 0)
                     {
@@ -184,7 +184,7 @@ int main()
                         printf("请重新输入货物的编号:");
                         scanf("%lld", &p[i].EAN);
                         buff = getchar();
-                        if (buff != '\n' || p[i].EAN < 1e13 || p[i].EAN >= 1e14)
+                        if (buff != '\n' || p[i].EAN < 1e12 || p[i].EAN >= 1e13)
                             p[i].EAN = 0;
                     }
                     q = 0;
@@ -198,7 +198,7 @@ int main()
                             printf("重新输入编号:\n");
                             scanf("%lld", &p[i].EAN);
                             buff = getchar();
-                            if (buff != '\n' || p[i].EAN < 1e13 || p[i].EAN >= 1e14)
+                            if (buff != '\n' || p[i].EAN < 1e12 || p[i].EAN >= 1e13)
                             {
                                 p[i].EAN = 0;
                                 goto EAN2ER;
