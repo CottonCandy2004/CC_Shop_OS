@@ -36,4 +36,12 @@ struct FREIGHT
     int margins; //»õÎïÀûÈó
 };
 typedef struct FREIGHT freight;
+void init_freight(freight *freight)
+{
+    freight->EAN = 0;
+    freight->name[20] = "";
+    freight->stock = 0;
+    freight->purchase_price = 0;
+    freight->sale_price = 0;
+}
 #endif

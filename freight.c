@@ -13,7 +13,7 @@ int main()
     char *notice3 = "是否还有需要更改的选项？";
     char *choice1 = "1.确认正确";
     char *choice2 = "2.重新输入";
-    char *choice3 = "1.编号";
+    char *choice3 = "1.EAN码";
     char *choice4 = "2.名称";
     char *choice5 = "3.进货数量";
     char *choice6 = "4.进货价";
@@ -46,7 +46,7 @@ int main()
     {
         q = 0;
         system("cls");
-        printf("请输入\n第%d种货品的编号:", (i + 1));
+        printf("请输入\n第%d种货品的EAN码:", (i + 1));
         scanf("%lld", &p[i].EAN);
         buff = getchar();
         if (buff != '\n' || p[i].EAN < 1e12 || p[i].EAN >= 1e13)
@@ -54,10 +54,10 @@ int main()
         while (p[i].EAN <= 0)
         {
         EANER:
-            printf("货物编号不合法，请确认输入是否正确，并重新输入\n");
+            printf("货物EAN码不合法，请确认输入是否正确，并重新输入\n");
             fflush(stdin);
             system("pause");
-            printf("货品编号:");
+            printf("货品EAN码:");
             scanf("%lld", &p[i].EAN);
             buff = getchar();
             if (buff != '\n' || p[i].EAN < 1e12 || p[i].EAN >= 1e13)
@@ -67,9 +67,9 @@ int main()
         {
             if (p[i].EAN == p[q].EAN)
             {
-                printf("货品的编号重复，请确认输入是否正确，并重新输入\n");
+                printf("货品的EAN码重复，请确认输入是否正确，并重新输入\n");
                 system("pause");
-                printf("重新输入编号\n");
+                printf("重新输入EAN码\n");
                 scanf("%lld", &p[i].EAN);
                 buff = getchar();
                 if (buff != '\n' || p[i].EAN < 1e12 || p[i].EAN >= 1e13)
@@ -156,7 +156,7 @@ int main()
         }
         system("cls");
         printf("请确认您输入的商品信息\n");
-        printf("编号:%ld\n名称:%s\n进货数量:%d\n进货价:%d\n售价:%d\n", p[i].EAN, p[i].name, p[i].stock, p[i].purchase_price, p[i].sale_price);
+        printf("EAN:%lld\n名称:%s\n进货数量:%d\n进货价:%d\n售价:%d\n", p[i].EAN, p[i].name, p[i].stock, p[i].purchase_price, p[i].sale_price);
         system("pause");
         int result_colour = 0;
         ch = ui_choice(notice1, freight_choice1, 2);
@@ -170,7 +170,7 @@ int main()
                 switch (ch1)
                 {
                 case 0:
-                    printf("请重新输入货品的编号\n");
+                    printf("请重新输入货品的EAN码\n");
                     scanf("%lld", &p[i].EAN);
                     buff = getchar();
                     if (buff != '\n' || p[i].EAN < 1e12 || p[i].EAN >= 1e13)
@@ -178,10 +178,10 @@ int main()
                     while (p[i].EAN <= 0)
                     {
                     EAN2ER:
-                        printf("货物编号不合法，请确认输入是否正确，并重新输入\n");
+                        printf("货物EAN码不合法，请确认输入是否正确，并重新输入\n");
                         fflush(stdin);
                         system("pause");
-                        printf("请重新输入货物的编号:");
+                        printf("请重新输入货物的EAN码:");
                         scanf("%lld", &p[i].EAN);
                         buff = getchar();
                         if (buff != '\n' || p[i].EAN < 1e12 || p[i].EAN >= 1e13)
@@ -192,10 +192,10 @@ int main()
                     {
                         if (p[i].EAN == p[q].EAN)
                         {
-                            printf("货品的编号重复，请确认输入是否正确，并重新输入\n");
+                            printf("货品的EAN码重复，请确认输入是否正确，并重新输入\n");
                             system("pause");
                             system("cls");
-                            printf("重新输入编号:\n");
+                            printf("重新输入EAN码:\n");
                             scanf("%lld", &p[i].EAN);
                             buff = getchar();
                             if (buff != '\n' || p[i].EAN < 1e12 || p[i].EAN >= 1e13)
@@ -295,7 +295,7 @@ int main()
                 }
                 fflush(stdin);
                 system("cls");
-                printf("修改后数据如下\n编号:%ld\n名称:%s\n进货数量:%d\n进货价:%d\n售价:%d\n", p[i].EAN, p[i].name, p[i].stock, p[i].purchase_price, p[i].sale_price);
+                printf("修改后数据如下\nEAN码:%lld\n名称:%s\n进货数量:%d\n进货价:%d\n售价:%d\n", p[i].EAN, p[i].name, p[i].stock, p[i].purchase_price, p[i].sale_price);
                 system("pause");
                 ch2 = ui_choice(notice3, freight_choice3, 2);
             }
