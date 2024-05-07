@@ -74,7 +74,7 @@ int main()
         {
             system("cls");
             printf("您要销毁的商品信息如下：\n");
-            printf("EAN码:%lld\n名称:%s\n进货数量:%d\n进货价:%d\n售价:%d\n", p[serch_id].EAN, p[serch_id].name, p[serch_id].stock, p[serch_id].purchase_price, p[serch_id].sale_price);
+            printf("EAN码:%lld\n名称:%s\n进货数量:%d\n进货价:%.2lf\n售价:%.2lf\n", p[serch_id].EAN, p[serch_id].name, p[serch_id].stock, p[serch_id].purchase_price, p[serch_id].sale_price);
             system("pause");
             ch1 = ui_choice(destroy_notice1, destroy_choice, 2);
             if (ch1 == 0)

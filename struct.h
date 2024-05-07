@@ -31,9 +31,9 @@ struct FREIGHT
     unsigned long long EAN; // EAN码
     char name[20];          // 货物名称
     int stock;              // 货物库存
-    int purchase_price;     // 货物进价
-    int sale_price;         // 货物售价
-    int margins;            // 货物利润
+    double purchase_price;     // 货物进价
+    double sale_price;         // 货物售价
+    double margins;            // 货物利润
 };
 typedef struct FREIGHT freight;
 void init_freight(freight *freight)
