@@ -28,18 +28,18 @@ void init_vip(struct vip *vip)
 }
 struct FREIGHT
 {
-    unsigned long long EAN; //EAN码
-    char name[20]; //货物名称
-    int stock; //货物库存
-    int purchase_price; //货物进价
-    int sale_price; //货物售价
-    int margins; //货物利润
+    unsigned long long EAN; // EAN码
+    char name[20];          // 货物名称
+    int stock;              // 货物库存
+    int purchase_price;     // 货物进价
+    int sale_price;         // 货物售价
+    int margins;            // 货物利润
 };
 typedef struct FREIGHT freight;
 void init_freight(freight *freight)
 {
     freight->EAN = 0;
-    freight->name[20] = "";
+    memset(freight->name, 0, 20);
     freight->stock = 0;
     freight->purchase_price = 0;
     freight->sale_price = 0;

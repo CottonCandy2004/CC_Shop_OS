@@ -57,7 +57,7 @@ int main()
             scanf("%lld", &EAN);
         }
         serch_id = locating(p, length, EAN);
-        Sleep(1000);
+        // Sleep(1000);
         if (serch_id == -1)
         {
             system("cls");

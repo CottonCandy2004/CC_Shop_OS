@@ -36,5 +36,5 @@ void del_freight(freight *freight, int *list_length, int id)
     }
     init_freight(freight + (*list_length) - 1);
     (*list_length)--;
-    Sleep(1000);
+    // Sleep(1000);
 }
