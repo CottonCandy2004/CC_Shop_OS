@@ -5,6 +5,7 @@
 #include "freightlib.h"
 #include "ui.h"
 #include "show_stock.h"
+#include "freight.h"
 
 void stock_main()
 {
@@ -22,6 +23,11 @@ void stock_main()
     int ch = ui_choice(notice1, stock_choice, 6);
     while (1)
     {
+        if (ch==0)
+        {
+            fright_import();
+            ch = ui_choice(notice1, stock_choice, 6);
+        }
         if (ch == 4)
         {
             show_mode(stock_data_head, length);

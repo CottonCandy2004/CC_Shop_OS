@@ -1,3 +1,6 @@
+#ifndef _FREIGHT_H_
+#define _FREIGHT_H_
+
 #include <stdio.h>
 #include <string.h>
 #include <malloc.h>
@@ -6,7 +9,7 @@
 #include "ui_terminal.h"
 #include "freightlib.h"
 
-int main()
+int fright_import()
 {
     char *notice1 = "请选择您的操作：";
     char *notice2 = "请选择你要重新输入的选项";
@@ -303,3 +306,5 @@ int main()
     }
     x = save_stock_data(p, &n);
 }
+
+#endif
