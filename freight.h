@@ -51,7 +51,7 @@ int fright_import()
         q = 0, mode = 0;
         system("cls");
         printf("请输入\n第%d种货品的EAN码:", (i + 1));
-        scanf("%lld", &p[length + i].EAN);
+        scanf("%llu", &p[length + i].EAN);
         buff = getchar();
         if (buff != '\n' || p[length + i].EAN < 1e12 || p[length + i].EAN >= 1e13)
             p[length + i].EAN = 0;
@@ -62,7 +62,7 @@ int fright_import()
             fflush(stdin);
             system("pause");
             printf("货品EAN码:");
-            scanf("%lld", &p[length + i].EAN);
+            scanf("%llu", &p[length + i].EAN);
             buff = getchar();
             if (buff != '\n' || p[length + i].EAN < 1e12 || p[length + i].EAN >= 1e13)
                 p[length + i].EAN = 0;
@@ -156,7 +156,7 @@ int fright_import()
         }
         system("cls");
         printf("请确认您输入的商品信息\n");
-        printf("EAN:%lld\n名称:%s\n进货数量:%d\n进货价:%.2lf\n售价:%.2lf\n", p[length + i].EAN, p[length + i].name, p[length + i].stock, p[length + i].purchase_price, p[length + i].sale_price);
+        printf("EAN:%llu\n名称:%s\n进货数量:%d\n进货价:%.2lf\n售价:%.2lf\n", p[length + i].EAN, p[length + i].name, p[length + i].stock, p[length + i].purchase_price, p[length + i].sale_price);
         system("pause");
         int result_colour = 0;
         ch = ui_choice(notice1, freight_choice1, 2);
@@ -171,7 +171,7 @@ int fright_import()
                 {
                 case 0:
                     printf("请重新输入货品的EAN码\n");
-                    scanf("%lld", &p[length + i].EAN);
+                    scanf("%llu", &p[length + i].EAN);
                     buff = getchar();
                     if (buff != '\n' || p[length + i].EAN < 1e12 || p[length + i].EAN >= 1e13)
                         p[length + i].EAN = 0;
@@ -182,7 +182,7 @@ int fright_import()
                         fflush(stdin);
                         system("pause");
                         printf("请重新输入货物的EAN码:");
-                        scanf("%lld", &p[length + i].EAN);
+                        scanf("%llu", &p[length + i].EAN);
                         buff = getchar();
                         if (buff != '\n' || p[length + i].EAN < 1e12 || p[length + i].EAN >= 1e13)
                             p[length + i].EAN = 0;
@@ -290,7 +290,7 @@ int fright_import()
                 }
                 fflush(stdin);
                 system("cls");
-                printf("修改后数据如下\nEAN码:%lld\n名称:%s\n进货数量:%d\n进货价:%.2lf\n售价:%.2lf\n", p[length + i].EAN, p[length + i].name, p[length + i].stock, p[length + i].purchase_price, p[length + i].sale_price);
+                printf("修改后数据如下\nEAN码:%llu\n名称:%s\n进货数量:%d\n进货价:%.2lf\n售价:%.2lf\n", p[length + i].EAN, p[length + i].name, p[length + i].stock, p[length + i].purchase_price, p[length + i].sale_price);
                 system("pause");
                 ch2 = ui_choice(notice3, freight_choice3, 2);
             }

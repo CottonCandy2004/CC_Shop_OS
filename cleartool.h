@@ -1,3 +1,5 @@
+#ifndef _CLEARTOOL_H_
+#define _CLEARTOOL_H_
 #include <stdio.h>
 #include <string.h>
 #include <malloc.h>
@@ -38,3 +40,14 @@ void del_freight(freight *freight, int *list_length, int id)
     (*list_length)--;
     // Sleep(1000);
 }
+void dest_freight(freight *freight, int id,int num)
+{
+    system("cls");
+    SetColor(15, 3);
+    HideConsoleCursor();
+    printf("正在处理...");
+    SetColor(15, 0);
+    freight[id].stock -= num;
+    freight[id].margins = freight[id].margins-(freight[id].purchase_price*num);
+}
+#endif
