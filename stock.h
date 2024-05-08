@@ -6,6 +6,7 @@
 #include "ui.h"
 #include "show_stock.h"
 #include "freight.h"
+#include "freight_import.h"
 
 void stock_main()
 {
@@ -17,15 +18,16 @@ void stock_main()
         return;
     stock_data += length;
     char *notice1 = "请选择您的操作：";
-    char *stock_choice[6] = {"1.进货", "2.收银台", "3.销毁", "4.移除物品", "5.显示库存","6.返回"};
+    char *stock_choice[6] = {"1.进货", "2.收银台", "3.销毁", "4.移除物品", "5.显示库存", "6.返回"};
     char *Error1 = "尚未实现";
     char *result = "";
     int ch = ui_choice(notice1, stock_choice, 6);
+    int is_changed = 0;
     while (1)
     {
-        if (ch==0)
+        if (ch == 0)
         {
-            fright_import();
+            is_changed += import_stock(stock_data_head, &length);
             ch = ui_choice(notice1, stock_choice, 6);
         }
         if (ch == 4)
@@ -40,6 +42,8 @@ void stock_main()
         }
         else if (ch == 5)
         {
+            if(is_changed)
+                save_stock_data(stock_data_head, &length);
             return;
         }
     }
