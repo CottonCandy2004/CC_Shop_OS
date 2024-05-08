@@ -5,14 +5,15 @@
 #include "struct.h"
 #include "ui_terminal.h"
 #include "freightlib.h"
-#include "destroytool.h"
+#include "cleartool.h"
 int main()
 {
-    char *destroy_notice1 = "请您最后确认是否销毁此商品。";
+    char *destroy_notice1 = "请您确认是否销毁此商品？";
+    char *destroy_notice2 = "请您最后确认销毁数量是否正确？";
     char *choice1 = "[Y]是";
     char *choice2 = "[N]否";
     char *destroy_choice[2] = {choice1, choice2};
-    int load_satus, length = 0, n, i, serch_id, ch1, x;
+    int load_satus, length = 0, n, i, serch_id, ch1, ch2, x, num;
     unsigned long long EAN;
     freight *p;
     p = (freight *)malloc(sizeof(freight) * 1000);
@@ -21,7 +22,7 @@ int main()
     {
         return -1;
     }
-    printf("请问您想要销毁多少种货品：");
+    printf("请问您想要销毁多少种货品？\n");
     ShowConsoleCursor();
     scanf("%d", &n);
     char buff = getchar();
@@ -33,7 +34,7 @@ int main()
         fflush(stdin);
         system("pause");
         system("cls");
-        printf("请问您要销毁多少种货品？\n");
+        printf("请问您想要销毁多少种货品？\n");
         ShowConsoleCursor();
         scanf("%d", &n);
         char buff = getchar();
@@ -43,9 +44,9 @@ int main()
     for (i = 0; i < n; i++)
     {
         system("cls");
-        printf("请输入想要销毁商品的EAN：");
+        printf("请输入要销毁的货品的EAN码\n");
         ShowConsoleCursor();
-        scanf("%lld", &EAN);
+        scanf("%llu", &EAN);
         buff = getchar();
         while (buff != '\n' || EAN < 1e12 || EAN >= 1e13)
         {
@@ -55,10 +56,9 @@ int main()
             system("cls");
             printf("请输入想要销毁商品的EAN：");
             ShowConsoleCursor();
-            scanf("%lld", &EAN);
+            scanf("%llu", &EAN);
         }
         serch_id = locating(p, length, EAN);
-        // Sleep(1000);
         if (serch_id == -1)
         {
             system("cls");
@@ -74,21 +74,63 @@ int main()
         {
             system("cls");
             printf("您要销毁的商品信息如下：\n");
-            printf("EAN码:%lld\n名称:%s\n进货数量:%d\n进货价:%.2lf\n售价:%.2lf\n", p[serch_id].EAN, p[serch_id].name, p[serch_id].stock, p[serch_id].purchase_price, p[serch_id].sale_price);
+            printf("EAN码:%llu\n名称:%s\n库存数量:%d\n进货价:%.2lf\n售价:%.2lf\n", p[serch_id].EAN, p[serch_id].name, p[serch_id].stock, p[serch_id].purchase_price, p[serch_id].sale_price);
             system("pause");
             ch1 = ui_choice(destroy_notice1, destroy_choice, 2);
             if (ch1 == 0)
             {
-                del_freight(p, &length, serch_id);
-                system("cls");
-                SetColor(10, 0);
-                printf("销毁成功！\n");
-                SetColor(15, 0);
-                fflush(stdin);
+                while (1)
+                {
+                    printf("请问您要销毁多少个该种商品？\n");
+                    ShowConsoleCursor();
+                    scanf("%d", &num);
+                    buff = getchar();
+                    if (buff != '\n')
+                        num = -1;
+                    while (num < 0 || num > p[serch_id].stock)
+                    {
+                        if (num > p[serch_id].stock)
+                        {
+                            printf("库存不足，请重新输入\n");
+                        }
+                        else
+                        {
+                            printf("输入不合法，请重新输入\n");
+                        }
+                        fflush(stdin);
+                        system("pause");
+                        system("cls");
+                        printf("请问您要销毁多少个该种商品？\n");
+                        ShowConsoleCursor();
+                        scanf("%d", &num);
+                        char buff = getchar();
+                        if (buff != '\n')
+                            num = -1;
+                    }
+                    ch2 = ui_choice(destroy_notice2, destroy_choice, 2);
+                    if (ch2 == 0)
+                    {
+                        dest_freight(p, serch_id, num);
+                        system("cls");
+                        SetColor(10, 0);
+                        printf("销毁成功！\n");
+                        SetColor(15, 0);
+                        system("pause");
+                        fflush(stdin);
+                        break;
+                    }
+                    else
+                    {
+                        printf("已经取消此操作\n");
+                        system("pause");
+                        continue;
+                    }
+                }
             }
             else
             {
                 printf("已经取消此操作\n");
+                system("pause");
                 i--;
                 continue;
             }
