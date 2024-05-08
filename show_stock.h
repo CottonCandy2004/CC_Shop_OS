@@ -54,7 +54,7 @@ void show_stock(freight *data, int length)
     printf("商品编号\t商品名称\t\t商品库存\t商品进价\t商品售价\t商品利润\n");
     for (int i = 0; i < length; i++)
     {
-        printf("%llu\t%-24s%d\t\t%.2lf\t\t%.2lf\t\t%.2lf\n", data[i].EAN, data[i].name, data[i].stock, data[i].purchase_price, data[i].sale_price, data[i].margins);
+        printf("%llu\t%-24s%-16d%-16.2lf%-16.2lf%-16.2lf\n", data[i].EAN, data[i].name, data[i].stock, data[i].purchase_price, data[i].sale_price, data[i].margins);
     }
     system("pause");
     SetColor(15, 0);
