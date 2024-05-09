@@ -26,6 +26,7 @@ void init_vip(struct vip *vip)
     vip->last_consume_day.day = 1;
     vip->name[0] = '\0';
 }
+
 struct FREIGHT
 {
     unsigned long long EAN; // EANÂë
@@ -36,6 +37,7 @@ struct FREIGHT
     double margins;            // »õÎïÀûÈó
 };
 typedef struct FREIGHT freight;
+
 void init_freight(freight *freight)
 {
     freight->EAN = 0;
@@ -43,5 +45,6 @@ void init_freight(freight *freight)
     freight->stock = 0;
     freight->purchase_price = 0;
     freight->sale_price = 0;
+    freight->margins = 0;
 }
 #endif
