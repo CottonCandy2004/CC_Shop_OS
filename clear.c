@@ -56,6 +56,7 @@ int main()
             printf("请输入想要清除商品的EAN：");
             ShowConsoleCursor();
             scanf("%llu", &EAN);
+            buff = getchar();
         }
         serch_id = locating(p, length, EAN);
         // Sleep(1000);
