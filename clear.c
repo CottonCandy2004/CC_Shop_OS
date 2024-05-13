@@ -43,10 +43,15 @@ int main()
     for (i = 0; i < n; i++)
     {
         system("cls");
-        printf("请输入想要清除商品的EAN：");
+        printf("请输入想要清除商品的EAN：（输入0以退出）\n");
         ShowConsoleCursor();
         scanf("%llu", &EAN);
         buff = getchar();
+        if (EAN == 0)
+        {
+            fflush(stdin);
+            return -1;
+        }
         while (buff != '\n' || EAN < 1e12 || EAN >= 1e13)
         {
             printf("输入不合法，请重新输入\n");
