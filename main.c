@@ -9,28 +9,19 @@
 
 int main()
 {
-    if (DEBUG_MODE)
+    int status = auth();
+    while (status != 200)
     {
-        SetColor(2, 0);
-        printf("Running in debug mode");
-        SetColor(15, 0);
-    }
-    else
-    {
-        int status = auth();
-        while (status != 200)
+        if (status == -2)
         {
-            if (status == -2)
-            {
-                SetColor(4, 0);
-                printf(" X\n密码错误，请重新输入\n");
-                Sleep(1000);
-                SetColor(15, 0);
-            }
-            if (status == -1)
-                return 0;
-            status = auth();
+            SetColor(4, 0);
+            printf(" X\n密码错误，请重新输入\n");
+            Sleep(1000);
+            SetColor(15, 0);
         }
+        if (status == -1)
+            return 0;
+        status = auth();
     }
     char *notice1 = "请选择您的操作：";
     char *choice[3] = {"1.会员管理", "2.货物管理", "3.退出"};

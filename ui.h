@@ -20,7 +20,7 @@ void flush(char *notice, char **arr, int length, int *choice)
     if (DEBUG_MODE)
     {
         SetColor(14, 0);
-        printf("===RUNNING IN DEBUG MODE===\n");
+        printf("===RUNNING IN DEBUG MODE,AUTH WILL SKIPPED===\n");
         SetColor(15, 0);
     }
     SetColor(15, 0);
