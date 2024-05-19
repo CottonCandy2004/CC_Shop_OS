@@ -1,3 +1,6 @@
+#ifndef CLEAR_H
+#define CLEAR_H
+
 #include <stdio.h>
 #include <string.h>
 #include <malloc.h>
@@ -6,7 +9,7 @@
 #include "ui_terminal.h"
 #include "freightlib.h"
 #include "cleartool.h"
-int main()
+int clear()
 {
     char *clear_notice1 = "请您最后确认是否清除此商品？";
     char *choice1 = "[Y]是";
@@ -104,3 +107,5 @@ int main()
     }
     x = silent_save_stock_data(p, &length);
 }
+
+#endif

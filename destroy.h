@@ -1,3 +1,6 @@
+#ifndef DESTROY_H
+#define DESTROY_H
+
 #include <stdio.h>
 #include <string.h>
 #include <malloc.h>
@@ -6,7 +9,7 @@
 #include "ui_terminal.h"
 #include "freightlib.h"
 #include "cleartool.h"
-int main()
+int destroy()
 {
     char *destroy_notice1 = "请您确认是否销毁此商品？";
     char *destroy_notice2 = "请您最后确认销毁数量是否正确？";
@@ -138,3 +141,5 @@ int main()
     }
     x = silent_save_stock_data(p, &length);
 }
+
+#endif
