@@ -16,7 +16,7 @@ int destroy()
     char *choice1 = "[Y]是";
     char *choice2 = "[N]否";
     char *destroy_choice[2] = {choice1, choice2};
-    int load_satus, length = 0, n, i, serch_id, ch1, ch2, x, num;
+    int load_satus, length = 0,serch_id, ch1, ch2, x, num;
     unsigned long long EAN;
     freight *p;
     p = (freight *)malloc(sizeof(freight) * 1000);
@@ -25,32 +25,18 @@ int destroy()
     {
         return -1;
     }
-    printf("请问您想要销毁多少种货品？\n");
-    ShowConsoleCursor();
-    scanf("%d", &n);
-    char buff = getchar();
-    if (buff != '\n')
-        n = -1;
-    while (n < 0)
-    {
-        printf("输入不合法，请重新输入\n");
-        fflush(stdin);
-        system("pause");
-        system("cls");
-        printf("请问您想要销毁多少种货品？\n");
-        ShowConsoleCursor();
-        scanf("%d", &n);
-        char buff = getchar();
-        if (buff != '\n')
-            n = -1;
-    }
-    for (i = 0; i < n; i++)
+    while(0)
     {
         system("cls");
-        printf("请输入要销毁的货品的EAN码\n");
+        printf("请输入要销毁的货品的EAN码（输入0以退出）\n");
         ShowConsoleCursor();
         scanf("%llu", &EAN);
-        buff = getchar();
+        char buff = getchar();
+        if (EAN == 0)
+        {
+            fflush(stdin);
+            return -1;
+        }
         while (buff != '\n' || EAN < 1e12 || EAN >= 1e13)
         {
             printf("输入不合法，请重新输入\n");
@@ -60,6 +46,7 @@ int destroy()
             printf("请输入想要销毁商品的EAN：");
             ShowConsoleCursor();
             scanf("%llu", &EAN);
+            char buff = getchar();
         }
         serch_id = locating(p, length, EAN);
         if (serch_id == -1)
@@ -70,7 +57,6 @@ int destroy()
             SetColor(15, 0);
             fflush(stdin);
             system("pause");
-            i--;
             continue;
         }
         else
@@ -134,7 +120,6 @@ int destroy()
             {
                 printf("已经取消此操作\n");
                 system("pause");
-                i--;
                 continue;
             }
         }

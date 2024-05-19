@@ -29,12 +29,12 @@ void init_vip(struct vip *vip)
 
 struct FREIGHT
 {
-    unsigned long long EAN; // EAN码
-    char name[20];          // 货物名称
-    int stock;              // 货物库存
-    double purchase_price;     // 货物进价
-    double sale_price;         // 货物售价
-    double margins;            // 货物利润
+    unsigned long long EAN;
+    char name[20];
+    int stock;
+    double purchase_price;
+    double sale_price;
+    double margins;
 };
 typedef struct FREIGHT freight;
 

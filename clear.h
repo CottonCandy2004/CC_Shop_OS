@@ -24,32 +24,13 @@ int clear()
     {
         return -1;
     }
-    printf("请问您想要清除多少种货品的数据？\n");
-    ShowConsoleCursor();
-    scanf("%d", &n);
-    char buff = getchar();
-    if (buff != '\n')
-        n = -1;
-    while (n < 0)
-    {
-        printf("输入不合法，请重新输入\n");
-        fflush(stdin);
-        system("pause");
-        system("cls");
-        printf("请问您想要清除多少种货品的数据？\n");
-        ShowConsoleCursor();
-        scanf("%d", &n);
-        char buff = getchar();
-        if (buff != '\n')
-            n = -1;
-    }
-    for (i = 0; i < n; i++)
+    while(0)
     {
         system("cls");
         printf("请输入想要清除商品的EAN：（输入0以退出）\n");
         ShowConsoleCursor();
         scanf("%llu", &EAN);
-        buff = getchar();
+        char buff = getchar();
         if (EAN == 0)
         {
             fflush(stdin);
@@ -106,6 +87,7 @@ int clear()
         }
     }
     x = silent_save_stock_data(p, &length);
+    free(p);
 }
 
 #endif
