@@ -25,7 +25,7 @@ int destroy()
     {
         return -1;
     }
-    while(0)
+    while(1)
     {
         system("cls");
         printf("请输入要销毁的货品的EAN码（输入0以退出）\n");
@@ -41,7 +41,7 @@ int destroy()
             printf("请输入要销毁的货品的EAN码（输入0以退出）\n");
             ShowConsoleCursor();
             scanf("%llu", &EAN);
-            char buff = getchar();
+            buff = getchar();
         }
         if (EAN == 0)
         {

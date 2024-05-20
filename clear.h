@@ -24,7 +24,7 @@ int clear()
     {
         return -1;
     }
-    while(0)
+    while(1)
     {
         system("cls");
         printf("请输入想要清除商品的EAN：（输入0以退出）\n");
