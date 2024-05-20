@@ -47,4 +47,12 @@ void init_freight(freight *freight)
     freight->sale_price = 0;
     freight->margins = 0;
 }
+struct RECEIPTS{
+    unsigned long long EAN;
+    double unit_price;
+    char name[20];
+    int num;
+    double sum_price;
+};
+typedef struct RECEIPTS receipts;
 #endif

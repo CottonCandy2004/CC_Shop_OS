@@ -32,21 +32,21 @@ int destroy()
         ShowConsoleCursor();
         scanf("%llu", &EAN);
         char buff = getchar();
-        if (EAN == 0)
-        {
-            fflush(stdin);
-            return -1;
-        }
-        while (buff != '\n' || EAN < 1e12 || EAN >= 1e13)
+        while (buff != '\n' || (EAN >0&&EAN < 1e12) || EAN >= 1e13|| EAN < 0)
         {
             printf("输入不合法，请重新输入\n");
             fflush(stdin);
             system("pause");
             system("cls");
-            printf("请输入想要销毁商品的EAN：");
+            printf("请输入要销毁的货品的EAN码（输入0以退出）\n");
             ShowConsoleCursor();
             scanf("%llu", &EAN);
             char buff = getchar();
+        }
+        if (EAN == 0)
+        {
+            fflush(stdin);
+            return -1;
         }
         serch_id = locating(p, length, EAN);
         if (serch_id == -1)

@@ -15,7 +15,7 @@ int clear()
     char *choice1 = "[Y]是";
     char *choice2 = "[N]否";
     char *clear_choice[2] = {choice1, choice2};
-    int load_satus, length = 0, n, i, serch_id, ch1, x;
+    int load_satus, length = 0, n,serch_id, ch1, x;
     unsigned long long EAN;
     freight *p;
     p = (freight *)malloc(sizeof(freight) * 1000);
@@ -31,21 +31,21 @@ int clear()
         ShowConsoleCursor();
         scanf("%llu", &EAN);
         char buff = getchar();
-        if (EAN == 0)
-        {
-            fflush(stdin);
-            return -1;
-        }
-        while (buff != '\n' || EAN < 1e12 || EAN >= 1e13)
+        while (buff != '\n' || (EAN >0&&EAN < 1e12) || EAN >= 1e13|| EAN < 0)
         {
             printf("输入不合法，请重新输入\n");
             fflush(stdin);
             system("pause");
             system("cls");
-            printf("请输入想要清除商品的EAN：");
+            printf("请输入想要清除商品的EAN：（输入0以退出）\n");
             ShowConsoleCursor();
             scanf("%llu", &EAN);
             buff = getchar();
+        }
+        if (EAN == 0)
+        {
+            fflush(stdin);
+            return -1;
         }
         serch_id = locating(p, length, EAN);
         // Sleep(1000);
@@ -57,7 +57,6 @@ int clear()
             SetColor(15, 0);
             fflush(stdin);
             system("pause");
-            i--;
             continue;
         }
         else
@@ -81,7 +80,6 @@ int clear()
             {
                 printf("已经取消此操作\n");
                 system("pause");
-                i--;
                 continue;
             }
         }
