@@ -43,7 +43,7 @@ void stock_main()
         {
             show_mode(stock_data_head, length);
         }
-        else if (ch == 1 || ch == 2 || ch == 3)
+        else if (ch == 1)
         {
             result = Error1;
             ch = ui_re_choice(notice1, stock_choice, 6, result, 4);
