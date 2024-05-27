@@ -21,6 +21,7 @@ int load_stock_data(freight *stock_data, int *length)
             system("pause");
             return -1;
         }
+        return 0;
     }
     while (1)
     {
@@ -35,6 +36,7 @@ int load_stock_data(freight *stock_data, int *length)
         {
             break;
         }
+        free(stock_data_temp);
     }
     fclose(fp);
     return 0;

@@ -62,6 +62,7 @@ int load_vip_data(struct vip *vip_data, int *length)
             system("pause");
             return -1;
         }
+        return 0;
     }
 
     while (1)
@@ -78,6 +79,7 @@ int load_vip_data(struct vip *vip_data, int *length)
         {
             break;
         }
+        free(vip_data_temp);
     }
     fclose(fp);
     return 0;
