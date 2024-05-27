@@ -26,7 +26,10 @@ void vip_main()
             int satus = register_vip(length, vip, vip_data_head);
             if (satus == 0)
             {
-                vip->id = (vip_data - 1)->id + 1;
+                if (length == 0)
+                    vip->id = 1;
+                else
+                    vip->id = (vip_data - 1)->id + 1;
                 *vip_data = *vip;
                 vip_data++;
                 length++;
