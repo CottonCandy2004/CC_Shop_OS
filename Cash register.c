@@ -157,7 +157,7 @@ int main()
                 receipts_data[m].unit_price = freight_data[freight_search_id].sale_price;
                 receipts_data[m].EAN = freight_data[freight_search_id].EAN;
                 strcpy(receipts_data[m].name, freight_data[freight_search_id].name);
-                receipts_data[m].num = num;
+                receipts_data[m].num += num;
                 receipts_data[m].sum_price=(receipts_data[m].num*receipts_data[m].unit_price);
                 break;
             }

@@ -48,6 +48,6 @@ void dest_freight(freight *freight, int id,int num)
     printf("正在处理...");
     SetColor(15, 0);
     freight[id].stock -= num;
-    freight[id].margins = freight[id].margins-(freight[id].purchase_price*num);
+    freight[id].margins -=(freight[id].purchase_price*num);
 }
 #endif
