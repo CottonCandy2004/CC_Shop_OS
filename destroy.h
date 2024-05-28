@@ -46,6 +46,7 @@ int destroy()
         if (EAN == 0)
         {
             fflush(stdin);
+            x = silent_save_stock_data(p, &length);
             return -1;
         }
         serch_id = locating(p, length, EAN);
@@ -124,7 +125,6 @@ int destroy()
             }
         }
     }
-    x = silent_save_stock_data(p, &length);
 }
 
 #endif

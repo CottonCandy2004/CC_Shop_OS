@@ -45,10 +45,11 @@ int clear()
         if (EAN == 0)
         {
             fflush(stdin);
+            x = silent_save_stock_data(p, &length);
+            free(p);
             return -1;
         }
         serch_id = locating(p, length, EAN);
-        // Sleep(1000);
         if (serch_id == -1)
         {
             system("cls");
@@ -84,8 +85,6 @@ int clear()
             }
         }
     }
-    x = silent_save_stock_data(p, &length);
-    free(p);
 }
 
 #endif
