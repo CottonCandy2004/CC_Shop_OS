@@ -131,19 +131,14 @@ int fright_import()
                     printf("请重新输入货品的EAN码\n");
                     scanf("%llu", &p[length + i].EAN);
                     buff = getchar();
-                    if (buff != '\n' || p[length + i].EAN < 1e12 || p[length + i].EAN >= 1e13)
-                        p[length + i].EAN = 0;
-                    while (p[length + i].EAN <= 0)
+                    while (buff != '\n' || p[length + i].EAN < 1e12 || p[length + i].EAN >= 1e13)
                     {
-                    EAN2ER:
                         printf("货物EAN码不合法，请确认输入是否正确，并重新输入\n");
                         fflush(stdin);
                         system("pause");
                         printf("请重新输入货物的EAN码:");
                         scanf("%llu", &p[length + i].EAN);
                         buff = getchar();
-                        if (buff != '\n' || p[length + i].EAN < 1e12 || p[length + i].EAN >= 1e13)
-                            p[length + i].EAN = 0;
                     }
                     q = 0;
                     while (length + i > q)
@@ -169,9 +164,7 @@ int fright_import()
                     printf("重新输入货品的进货数量:");
                     scanf("%d", &p[length + i].stock);
                     buff = getchar();
-                    if (buff != '\n')
-                        p[length + i].stock = -1;
-                    while (p[length + i].stock < 0)
+                    while (p[length + i].stock < 0||buff != '\n')
                     {
                         printf("进货数量不合法，请确认输入是否正确，并重新输入\n");
                         fflush(stdin);
@@ -179,70 +172,52 @@ int fright_import()
                         printf("货品的进货数量:");
                         scanf("%d", &p[length + i].stock);
                         buff = getchar();
-                        if (buff != '\n')
-                            p[length + i].stock = -1;
                     }
                     break;
                 case 3:
-                    printf("重新输入货品的进货价:");
-                    scanf("%lf", &p[length + i].purchase_price);
-                    buff = getchar();
-                    if (buff != '\n')
-                        p[length + i].purchase_price = -1;
-                    while (p[length + i].purchase_price < 0)
+                    while (1)
                     {
-                    PURCHASEER2:
-                        printf("进货价不合法，请确认输入是否正确，并重新输入\n");
-                        fflush(stdin);
-                        system("pause");
-                        printf("货品的进货价:");
-                        scanf("%lf", &p[length + i].purchase_price);
-                        buff = getchar();
-                        if (buff != '\n')
-                            p[length + i].purchase_price = -1;
-                    }
-                    while (p[length + i].purchase_price > p[length + i].sale_price)
-                    {
-                        printf("进货价不能大于售价，请重新输入\n");
                         printf("重新输入货品的进货价:");
                         scanf("%lf", &p[length + i].purchase_price);
                         buff = getchar();
-                        if (buff != '\n')
+                        while (p[length + i].purchase_price < 0 || buff != '\n')
                         {
-                            p[length + i].purchase_price = -1;
-                            goto PURCHASEER2;
+                            printf("进货价不合法，请确认输入是否正确，并重新输入\n");
+                            fflush(stdin);
+                            system("pause");
+                            printf("货品的进货价:");
+                            scanf("%lf", &p[length + i].purchase_price);
+                            buff = getchar();
                         }
+                        if (p[length + i].purchase_price > p[length + i].sale_price)
+                        {
+                            printf("进货价不能大于售价，请重新输入\n");
+                            continue;
+                        }
+                        break;
                     }
                     break;
                 case 4:
-                    printf("重新输入货品的售价:");
-                    scanf("%lf", &p[length + i].sale_price);
-                    buff = getchar();
-                    if (buff != '\n')
-                        p[length + i].sale_price = -1;
-                    while (p[length + i].sale_price < 0)
+                    while (1)
                     {
-                    SALEER2:
-                        printf("售价不合法，请确认输入是否正确，并重新输入\n");
-                        fflush(stdin);
-                        system("pause");
-                        printf("货品的售价:");
-                        scanf("%lf", &p[length + i].sale_price);
-                        buff = getchar();
-                        if (buff != '\n')
-                            p[length + i].sale_price = -1;
-                    }
-                    while (p[length + i].purchase_price > p[length + i].sale_price)
-                    {
-                        printf("售价不能小于进货价，请重新输入\n");
                         printf("重新输入货品的售价:");
                         scanf("%lf", &p[length + i].sale_price);
                         buff = getchar();
-                        if (buff != '\n')
+                        while (p[length + i].sale_price < 0||buff != '\n')
                         {
-                            p[length + i].sale_price = -1;
-                            goto SALEER2;
+                            printf("售价不合法，请确认输入是否正确，并重新输入\n");
+                            fflush(stdin);
+                            system("pause");
+                            printf("货品的售价:");
+                            scanf("%lf", &p[length + i].sale_price);
+                            buff = getchar();
                         }
+                        if (p[length + i].purchase_price > p[length + i].sale_price)
+                        {
+                            printf("售价不能小于进货价，请重新输入\n");
+                            continue;
+                        }
+                        break;
                     }
                     break;
                 }
@@ -261,6 +236,7 @@ int fright_import()
             init_freight(p + length + i);
             i--;
         }
+        i++;
     }
     length += i;
     x = save_stock_data(p, &length);
