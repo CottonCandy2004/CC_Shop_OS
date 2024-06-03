@@ -23,6 +23,7 @@ void stock_main()
     char *notice1 = "请选择您的操作：";
     char *stock_choice[6] = {"1.进货", "2.收银台", "3.销毁", "4.移除物品", "5.显示库存", "6.返回"};
     int is_changed = 0;
+    int ch;
     while (1)
     {
         ch = ui_choice(notice1, stock_choice, 6);
