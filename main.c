@@ -29,16 +29,15 @@ int main()
     while (1)
     {
         int ch = ui_choice(notice1, choice, 3);
-        if (ch == 0)
+        switch(ch)
         {
+        case 0:
             vip_main();
-        }
-        else if (ch == 1)
-        {
+            break;
+        case 1:
             stock_main();
-        }
-        else if (ch == 2)
-        {
+            break;
+        case 2:
             exit(0);
         }
     }

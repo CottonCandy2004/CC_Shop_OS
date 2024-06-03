@@ -10,7 +10,7 @@
 #include "freightlib.h"
 #include "cleartool.h"
 #include "registertool.h"
-int main()
+int casher()
 {
     struct vip *vip_data;
     freight *freight_data;
