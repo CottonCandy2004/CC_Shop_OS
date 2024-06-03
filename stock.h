@@ -29,7 +29,7 @@ void stock_main()
         ch = ui_choice(notice1, stock_choice, 6);
         switch(ch){
         case 0:
-            is_changed += import_stock(stock_data_head, &length);
+            fright_import();
         	break;
         case 2:
             destroy();
