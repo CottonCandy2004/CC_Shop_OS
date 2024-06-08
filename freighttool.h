@@ -1,3 +1,6 @@
+#ifndef FEIGHTTOOL_H
+#define FEIGHTTOOL_H
+
 #include <string.h>
 #include <stdio.h>
 #include "struct.h"
@@ -18,3 +21,5 @@ void freight_msg(char *msg, freight *freight, int serch_id)
             freight[serch_id].purchase_price,
             freight[serch_id].sale_price);
 }
+
+#endif
