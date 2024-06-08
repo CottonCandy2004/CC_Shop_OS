@@ -9,6 +9,7 @@
 #include "ui_terminal.h"
 #include "freightlib.h"
 #include "cleartool.h"
+#include "freighttool.h"
 int destroy()
 {
     char *destroy_notice1 = "请您确认是否销毁此商品？";
@@ -16,6 +17,7 @@ int destroy()
     char *choice1 = "[Y]是";
     char *choice2 = "[N]否";
     char *destroy_choice[2] = {choice1, choice2};
+    char *msg = (char *)malloc(sizeof(char) * 100);
     int load_satus, length = 0,serch_id, ch1, ch2, x, num;
     unsigned long long EAN;
     freight *p;
@@ -63,8 +65,8 @@ int destroy()
         else
         {
             system("cls");
-            printf("您要销毁的商品信息如下：\n");
-            printf("EAN码:%llu\n名称:%s\n库存数量:%d\n进货价:%.2lf\n售价:%.2lf\n", p[serch_id].EAN, p[serch_id].name, p[serch_id].stock, p[serch_id].purchase_price, p[serch_id].sale_price);
+            freight_msg(msg,p,serch_id);
+            printf("%s",msg);
             system("pause");
             ch1 = ui_choice(destroy_notice1, destroy_choice, 2);
             if (ch1 == 0)

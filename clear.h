@@ -9,12 +9,14 @@
 #include "ui_terminal.h"
 #include "freightlib.h"
 #include "cleartool.h"
+#include "freighttool.h"
 int clear()
 {
     char *clear_notice1 = "请您最后确认是否清除此商品？";
     char *choice1 = "[Y]是";
     char *choice2 = "[N]否";
     char *clear_choice[2] = {choice1, choice2};
+    char *msg = (char *)malloc(sizeof(char) * 100);
     int load_satus, length = 0, n,serch_id, ch1, x;
     unsigned long long EAN;
     freight *p;
@@ -63,8 +65,8 @@ int clear()
         else
         {
             system("cls");
-            printf("您要清除的商品信息如下：\n");
-            printf("EAN码:%llu\n名称:%s\n库存数量:%d\n进货价:%.2lf\n售价:%.2lf\n", p[serch_id].EAN, p[serch_id].name, p[serch_id].stock, p[serch_id].purchase_price, p[serch_id].sale_price);
+            freight_msg(msg,p,serch_id);
+            printf("%s",msg);
             system("pause");
             ch1 = ui_choice(clear_notice1, clear_choice, 2);
             if (ch1 == 0)

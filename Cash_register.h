@@ -3,7 +3,6 @@
 #include "struct.h"
 #include "ui_terminal.h"
 #include "ui.h"
-#include "stdio.h"
 #include "vip.h"
 #include "viplib.h"
 #include "vip_show.h"

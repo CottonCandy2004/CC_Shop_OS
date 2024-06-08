@@ -8,6 +8,7 @@
 #include "struct.h"
 #include "ui_terminal.h"
 #include "freightlib.h"
+#include "freighttool.h"
 
 int fright_import()
 {
@@ -26,8 +27,9 @@ int fright_import()
     char *freight_choice1[2] = {choice1, choice2};
     char *freight_choice2[5] = {choice3, choice4, choice5, choice6, choice7};
     char *freight_choice3[2] = {choice8, choice9};
-    int i = 1, q, ch, ch1, ch2, x, y, length = 0, mode;
+    int i = 0, q, ch, ch1, ch2, x, y, length = 0, mode;
     char buff;
+    char *msg = (char *)malloc(sizeof(char) * 100);    
     freight *p = (freight *)malloc(1000 * sizeof(freight));
     y = load_stock_data(p, &length);
     while (1)
@@ -54,7 +56,7 @@ int fright_import()
         {
             if (p[length + i].EAN == p[q].EAN)
             {
-                printf("此商品已在库中\n商品名称为%s\n", p[q].name);
+                printf("此商品已在库中\nEAN码:%llu\n名称:%s\n库存数量:%d\n进货价:%.2lf\n售价:%.2lf\n", p[q].EAN, p[q].name, p[q].stock, p[q].purchase_price, p[q].sale_price);
                 mode = 1;
                 break;
             }
@@ -113,8 +115,8 @@ int fright_import()
             break;
         }
         system("cls");
-        printf("请确认您输入的商品信息\n");
-        printf("EAN:%llu\n名称:%s\n进货数量:%d\n进货价:%.2lf\n售价:%.2lf\n", p[length + i].EAN, p[length + i].name, p[length + i].stock, p[length + i].purchase_price, p[length + i].sale_price);
+        freight_msg(msg,p,length + i);
+        printf("%s",msg);
         system("pause");
         int result_colour = 0;
         ch = ui_choice(notice1, freight_choice1, 2);
@@ -223,16 +225,19 @@ int fright_import()
                 }
                 fflush(stdin);
                 system("cls");
-                printf("修改后数据如下\nEAN码:%llu\n名称:%s\n进货数量:%d\n进货价:%.2lf\n售价:%.2lf\n", p[length + i].EAN, p[length + i].name, p[length + i].stock, p[length + i].purchase_price, p[length + i].sale_price);
+                freight_msg(msg,p,length + i);
+                printf("%s",msg);
                 system("pause");
                 ch2 = ui_choice(notice3, freight_choice3, 2);
             }
         }
+        p[length + i].margins=0;
         if (mode == 1)
         {
             p[q].purchase_price = ((p[length + i].purchase_price * p[length + i].stock) + (p[q].purchase_price * p[q].stock)) / (p[q].stock + p[length + i].stock);
             p[q].stock += p[length + i].stock;
             p[q].sale_price = p[length + i].sale_price;
+            p[q].margins+=p[length + i].margins;
             init_freight(p + length + i);
             i--;
         }
