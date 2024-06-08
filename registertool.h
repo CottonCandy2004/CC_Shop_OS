@@ -35,7 +35,7 @@ void Discount_calculation(receipts *receipts_data, struct vip *vip_data, int vip
     }
     else if (vip_data[vip_search_id].total_consume >= 600)
     {
-        discount = 0.9
+        discount = 0.9;
     }
     receipts_data->unit_price = receipts_data->unit_price * discount;
 }

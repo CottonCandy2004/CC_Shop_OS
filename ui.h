@@ -24,7 +24,7 @@ void flush(char *notice, char **arr, int length, int *choice)
         SetColor(15, 0);
     }
     SetColor(15, 0);
-    printf("%s\n", notice);
+    printf("欢迎使用棉花糖简易超市管理系统\nWelcome to use Cotton Candy Simple Shop OS\n\n%s\n", notice);
     for (int i = 0; i < length; i++)
     {
         if (i == *choice)
