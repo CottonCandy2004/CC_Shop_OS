@@ -15,6 +15,7 @@ int fright_import()
     char *notice1 = "请选择您的操作：";
     char *notice2 = "请选择你要重新输入的选项";
     char *notice3 = "是否还有需要更改的选项？";
+    char *notice4 = "货物的进货价不能大于售价打九折，请确认是否正确";
     char *choice1 = "1.确认正确";
     char *choice2 = "2.重新输入";
     char *choice3 = "1.EAN码";
@@ -27,7 +28,7 @@ int fright_import()
     char *freight_choice1[2] = {choice1, choice2};
     char *freight_choice2[5] = {choice3, choice4, choice5, choice6, choice7};
     char *freight_choice3[2] = {choice8, choice9};
-    int i = 0, q, ch, ch1, ch2, x, y, length = 0, mode;
+    int i = 0, q, ch, ch1, ch2,ch3, x, y, length = 0, mode;
     char buff;
     char *msg = (char *)malloc(sizeof(char) * 100);    
     freight *p = (freight *)malloc(1000 * sizeof(freight));
@@ -107,9 +108,9 @@ int fright_import()
                 scanf("%lf", &p[length + i].sale_price);
                 buff = getchar();
             }
-            if (p[length + i].purchase_price > p[length + i].sale_price)
+            if (p[length + i].purchase_price > (0.9*p[length + i].sale_price))
             {
-                printf("进货价不能大于售价，请重新输入\n");
+                printf("进货价不能大于售价打九折，请重新输入\n");
                 continue;
             }
             break;
@@ -191,9 +192,9 @@ int fright_import()
                             scanf("%lf", &p[length + i].purchase_price);
                             buff = getchar();
                         }
-                        if (p[length + i].purchase_price > p[length + i].sale_price)
+                        if (p[length + i].purchase_price > (0.9*p[length + i].sale_price))
                         {
-                            printf("进货价不能大于售价，请重新输入\n");
+                            printf("进货价不能大于售价打九折，请重新输入\n");
                             continue;
                         }
                         break;
@@ -214,9 +215,9 @@ int fright_import()
                             scanf("%lf", &p[length + i].sale_price);
                             buff = getchar();
                         }
-                        if (p[length + i].purchase_price > p[length + i].sale_price)
+                        if (p[length + i].purchase_price > (0.9*p[length + i].sale_price))
                         {
-                            printf("售价不能小于进货价，请重新输入\n");
+                            printf("打九折的售价不能小于进货价，请重新输入\n");
                             continue;
                         }
                         break;
@@ -238,6 +239,34 @@ int fright_import()
             p[q].stock += p[length + i].stock;
             p[q].sale_price = p[length + i].sale_price;
             p[q].margins+=p[length + i].margins;
+            if (p[q].purchase_price>(0.9*p[q].sale_price))
+            {
+                ch3=ui_choice(notice4, freight_choice3, 2);
+                if (ch3==1)
+                {
+                    while (1)
+                    {
+                        printf("重新输入货品的售价:");
+                        scanf("%lf", &p[q].sale_price);
+                        buff = getchar();
+                        while (p[q].sale_price < 0||buff != '\n')
+                        {
+                            printf("售价不合法，请确认输入是否正确，并重新输入\n");
+                            fflush(stdin);
+                            system("pause");
+                            printf("货品的售价:");
+                            scanf("%lf", &p[q].sale_price);
+                            buff = getchar();
+                        }
+                        if (p[q].purchase_price > (0.9*p[q].sale_price))
+                        {
+                            printf("打九折的售价不能小于进货价，请重新输入\n");
+                            continue;
+                        }
+                        break;
+                    }
+                }
+            }
             init_freight(p + length + i);
             i--;
         }

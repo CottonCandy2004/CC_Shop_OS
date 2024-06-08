@@ -14,7 +14,7 @@ int casher()
     struct vip *vip_data;
     freight *freight_data;
     receipts *receipts_data;
-    int vip_length = 0, freight_length = 0, vip_search_id, freight_search_id, mode, num, i = 0, n = 0, m = 0, ch0, receipts_length = 0;
+    int vip_length = 0, freight_length = 0, vip_search_id, freight_search_id, mode, num, i = 0, n = 0, m = 0, ch0, receipts_length = 0, x,discount=1;
     double sum_price;
     unsigned long long phone_number, EAN;
     char *register_notice = "请问您是否要继续使用收银台？";
@@ -38,6 +38,7 @@ int casher()
         while (1)
         {
             mode = 1;
+            discount=1;
             memset(receipts_data, 0, sizeof(receipts) * 1000);
             printf("请输入会员的手机号码：（输入0为无会员）\n");
             scanf("%llu", &phone_number);
@@ -152,12 +153,17 @@ int casher()
                     break;
                 }
                 freight_data[freight_search_id].stock -= num;
-                freight_data[freight_search_id].margins += (freight_data[freight_search_id].sale_price * num);
                 receipts_data[m].unit_price = freight_data[freight_search_id].sale_price;
                 receipts_data[m].EAN = freight_data[freight_search_id].EAN;
                 strcpy(receipts_data[m].name, freight_data[freight_search_id].name);
                 receipts_data[m].num += num;
-                receipts_data[m].sum_price=(receipts_data[m].num*receipts_data[m].unit_price);
+                if (mode == 1)
+                {
+                    timesearch(vip_data, vip_search_id);
+                    Discount_calculation(receipts_data,vip_data,vip_search_id);
+                }
+                freight_data[freight_search_id].margins += ((receipts_data[m].unit_price-freight_data[freight_search_id].purchase_price) * num);
+                receipts_data[m].sum_price = (receipts_data[m].num * receipts_data[m].unit_price);
                 break;
             }
             i++;
