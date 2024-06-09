@@ -14,7 +14,7 @@ int casher()
     struct vip *vip_data;
     freight *freight_data;
     receipts *receipts_data;
-    int vip_length = 0, freight_length = 0, vip_search_id, freight_search_id, mode, num, i = 0, n = 0, m = 0, ch0, receipts_length = 0, x,discount=1;
+    int vip_length = 0, freight_length = 0, vip_search_id, freight_search_id, mode, num, i = 0, n = 0, m = 0, ch0, receipts_length = 0, x, discount = 1;
     double sum_price;
     unsigned long long phone_number, EAN;
     char *register_notice = "请问您是否要继续使用收银台？";
@@ -38,8 +38,9 @@ int casher()
         while (1)
         {
             mode = 1;
-            discount=1;
+            discount = 1;
             memset(receipts_data, 0, sizeof(receipts) * 1000);
+            memset(msg, 0, 100);
             printf("请输入会员的手机号码：（输入0为无会员）\n");
             scanf("%llu", &phone_number);
             buff = getchar();
@@ -78,11 +79,12 @@ int casher()
                     system("pause");
                 }
             }
-            system("cls");
             break;
         }
         while (1)
         {
+            system("cls");
+            i = 0, n = 0, m = 0;
             printf("请输入商品编号：（输入0退出并打印小票）\n");
             scanf("%llu", &EAN);
             m = i;
@@ -111,6 +113,7 @@ int casher()
                 break;
             }
             freight_search_id = locating(freight_data, freight_length, EAN);
+            system("cls");
             if (freight_search_id == -1)
             {
                 printf("该商品不存在，请确认输入是否正确，并重新输入\n");
@@ -160,16 +163,30 @@ int casher()
                 if (mode == 1)
                 {
                     timesearch(vip_data, vip_search_id);
-                    Discount_calculation(receipts_data,vip_data,vip_search_id);
+                    Discount_calculation(receipts_data, vip_data, vip_search_id);
                 }
-                freight_data[freight_search_id].margins += ((receipts_data[m].unit_price-freight_data[freight_search_id].purchase_price) * num);
+                freight_data[freight_search_id].margins += ((receipts_data[m].unit_price - freight_data[freight_search_id].purchase_price) * num);
                 receipts_data[m].sum_price = (receipts_data[m].num * receipts_data[m].unit_price);
                 break;
             }
             i++;
         }
         sum_price = fresum(receipts_data, &receipts_length);
-        receipts_vip(receipts_data, receipts_length);
+        receipts_vip(receipts_data, receipts_length, sum_price);
+        double pay;
+        printf("应收：%.2f\n实付：", sum_price);
+        scanf("%lf", &pay);
+        buff = getchar();
+        while (pay < 0 || buff != '\n'||pay<sum_price)
+        {
+            printf("实付不合法或小于应收，请确认输入是否正确，并重新输入\n");
+            fflush(stdin);
+            system("pause");
+            printf("实付:");
+            scanf("%lf", &pay);
+            buff = getchar();
+        }
+        printf("找零：%.2f", (pay - sum_price));
         system("pause");
         if (mode == 1)
         {

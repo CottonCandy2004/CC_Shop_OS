@@ -10,9 +10,9 @@ void timeput(struct vip *vip_data, int vip_search_id)
     struct tm *localTime;
     time(&currentTime);
     localTime = localtime(&currentTime);
-    vip_data[vip_search_id].last_consume_day.year = localTime->tm_year;
-    vip_data[vip_search_id].last_consume_day.month = localTime->tm_year;
-    vip_data[vip_search_id].last_consume_day.year = localTime->tm_year;
+    vip_data[vip_search_id].last_consume_day.year = (localTime->tm_year+1900);
+    vip_data[vip_search_id].last_consume_day.month = localTime->tm_mon;
+    vip_data[vip_search_id].last_consume_day.day = localTime->tm_mday;
 }
 void timesearch(struct vip *vip_data, int vip_search_id)
 {
@@ -54,7 +54,7 @@ double fresum(receipts *receipts_data, int *receipts_length)
     return sum;
 }
 
-void receipts_vip(receipts *receipts, int length)
+void receipts_vip(receipts *receipts, int length,double sum)
 {
     system("cls");
     SetColor(3, 0);
@@ -63,6 +63,7 @@ void receipts_vip(receipts *receipts, int length)
     {
         printf("%-16s%-16.2f%-8d%-16.2f\n", receipts[i].name, receipts[i].unit_price, receipts[i].num, receipts[i].sum_price);
     }
+    printf("\n×Ü¼Æ\t\t\t\t\t%.2f\n",sum);
     return;
 }
 
