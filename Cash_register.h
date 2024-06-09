@@ -37,6 +37,7 @@ int casher()
     {
         while (1)
         {
+            receipts_length = 0;
             mode = 1;
             discount = 1;
             memset(receipts_data, 0, sizeof(receipts) * 1000);

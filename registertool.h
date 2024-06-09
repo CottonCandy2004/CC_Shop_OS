@@ -20,7 +20,7 @@ void timesearch(struct vip *vip_data, int vip_search_id)
     struct tm *localTime;
     time(&currentTime);
     localTime = localtime(&currentTime);
-    if (vip_data[vip_search_id].last_consume_day.year < localTime->tm_year && vip_data[vip_search_id].last_consume_day.month < localTime->tm_year && vip_data[vip_search_id].last_consume_day.year < localTime->tm_year)
+    if (vip_data[vip_search_id].last_consume_day.year < localTime->tm_year && vip_data[vip_search_id].last_consume_day.month < localTime->tm_mon && vip_data[vip_search_id].last_consume_day.day < localTime->tm_mday)
     {
         vip_data[vip_search_id].total_consume = 0;
     }
