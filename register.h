@@ -12,7 +12,6 @@ int register_vip(int length, struct vip *vip, struct vip *vip_data);
 int register_vip(int length, struct vip *vip, struct vip *vip_data)
 {
     int step = 0;
-    // fflush(stdin);
     init_vip(vip);
     system("cls");
     while (1)

@@ -18,23 +18,22 @@ int destroy()
     char *choice2 = "[N]否";
     char *destroy_choice[2] = {choice1, choice2};
     char *msg = (char *)malloc(sizeof(char) * 100);
-    int load_satus, length = 0,serch_id, ch1, ch2, x, num;
+    int load_satus, length = 0, serch_id, ch1, ch2, x, num;
     unsigned long long EAN;
-    freight *p;
-    p = (freight *)malloc(sizeof(freight) * 1000);
+    freight *p = (freight *)malloc(sizeof(freight) * 1000);
     load_satus = load_stock_data(p, &length);
     if (load_satus == -1)
     {
         return -1;
     }
-    while(1)
+    while (1)
     {
         system("cls");
         printf("请输入要销毁的货品的EAN码（输入0以退出）\n");
         ShowConsoleCursor();
         scanf("%llu", &EAN);
         char buff = getchar();
-        while (buff != '\n' || (EAN >0&&EAN < 1e12) || EAN >= 1e13|| EAN < 0)
+        while (buff != '\n' || (EAN > 0 && EAN < 1e12) || EAN >= 1e13 || EAN < 0)
         {
             printf("输入不合法，请重新输入\n");
             fflush(stdin);
@@ -65,8 +64,8 @@ int destroy()
         else
         {
             system("cls");
-            freight_msg(msg,p,serch_id);
-            printf("%s",msg);
+            freight_msg(msg, p, serch_id);
+            printf("%s", msg);
             system("pause");
             ch1 = ui_choice(destroy_notice1, destroy_choice, 2);
             if (ch1 == 0)
@@ -127,6 +126,7 @@ int destroy()
             }
         }
     }
+    free(p);
 }
 
 #endif

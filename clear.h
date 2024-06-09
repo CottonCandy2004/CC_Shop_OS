@@ -17,23 +17,22 @@ int clear()
     char *choice2 = "[N]否";
     char *clear_choice[2] = {choice1, choice2};
     char *msg = (char *)malloc(sizeof(char) * 100);
-    int load_satus, length = 0, n,serch_id, ch1, x;
+    int load_satus, length = 0, n, serch_id, ch1, x;
     unsigned long long EAN;
-    freight *p;
-    p = (freight *)malloc(sizeof(freight) * 1000);
+    freight *p = (freight *)malloc(sizeof(freight) * 1000);
     load_satus = load_stock_data(p, &length);
     if (load_satus == -1)
     {
         return -1;
     }
-    while(1)
+    while (1)
     {
         system("cls");
         printf("请输入想要清除商品的EAN：（输入0以退出）\n");
         ShowConsoleCursor();
         scanf("%llu", &EAN);
         char buff = getchar();
-        while (buff != '\n' || (EAN >0&&EAN < 1e12) || EAN >= 1e13|| EAN < 0)
+        while (buff != '\n' || (EAN > 0 && EAN < 1e12) || EAN >= 1e13 || EAN < 0)
         {
             printf("输入不合法，请重新输入\n");
             fflush(stdin);
@@ -65,8 +64,8 @@ int clear()
         else
         {
             system("cls");
-            freight_msg(msg,p,serch_id);
-            printf("%s",msg);
+            freight_msg(msg, p, serch_id);
+            printf("%s", msg);
             system("pause");
             ch1 = ui_choice(clear_notice1, clear_choice, 2);
             if (ch1 == 0)
@@ -87,6 +86,7 @@ int clear()
             }
         }
     }
+    free(p);
 }
 
 #endif

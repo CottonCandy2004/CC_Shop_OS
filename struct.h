@@ -53,6 +53,7 @@ struct RECEIPTS{
     char name[20];
     int num;
     double sum_price;
+    double discount_price;
 };
 typedef struct RECEIPTS receipts;
 #endif

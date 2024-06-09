@@ -157,16 +157,17 @@ int casher()
                 }
                 freight_data[freight_search_id].stock -= num;
                 receipts_data[m].unit_price = freight_data[freight_search_id].sale_price;
+                receipts_data[m].discount_price = freight_data[freight_search_id].sale_price;
                 receipts_data[m].EAN = freight_data[freight_search_id].EAN;
                 strcpy(receipts_data[m].name, freight_data[freight_search_id].name);
                 receipts_data[m].num += num;
                 if (mode == 1)
                 {
                     timesearch(vip_data, vip_search_id);
-                    Discount_calculation(receipts_data, vip_data, vip_search_id);
+                    Discount_calculation(receipts_data, vip_data, vip_search_id,m);
                 }
-                freight_data[freight_search_id].margins += ((receipts_data[m].unit_price - freight_data[freight_search_id].purchase_price) * num);
-                receipts_data[m].sum_price = (receipts_data[m].num * receipts_data[m].unit_price);
+                freight_data[freight_search_id].margins += ((receipts_data[m].discount_price - freight_data[freight_search_id].purchase_price) * num);
+                receipts_data[m].sum_price = (receipts_data[m].num * receipts_data[m].discount_price);
                 break;
             }
             i++;
@@ -201,4 +202,7 @@ int casher()
     }
     save_vip_data(vip_data, &vip_length);
     silent_save_stock_data(freight_data, &freight_length);
+    free(vip_data);
+    free(freight_data);
+    free(receipts_data);
 }
