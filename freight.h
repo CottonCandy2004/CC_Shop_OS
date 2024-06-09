@@ -116,6 +116,7 @@ int fright_import()
             break;
         }
         system("cls");
+        strcpy(p[length + i].name, p[q].name);
         freight_msg(msg,p,length + i);
         printf("%s",msg);
         system("pause");
