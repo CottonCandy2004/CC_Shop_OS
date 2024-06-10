@@ -16,6 +16,16 @@ The program will generate key.dat, vip.dat, stock.dat in the running directory. 
 
 This product can only be run on Windows.
 
+从csv文件导入数据时，请确保csv文件格式如下：
+
+Please ensure the csv file format as follows when importing data from csv:
+
+|id|phone_number|name|last_consume_day_year|last_consume_day_month|last_consume_day_day|total_consume|
+|---|---|---|---|---|---|---|
+|1|12345678901|张三|2021|1|1|1000|
+|2|12345678902|李四|2021|1|2|2000|
+|...|...|...|...|...|...|
+
 ## 程序运行截图
 #### Screenshots
 ![](./png/os01.png)
