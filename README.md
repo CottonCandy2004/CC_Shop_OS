@@ -1,61 +1,37 @@
-# <p align="middle">《C语言大作业》小组准备</p>
-## 一、课题选择
-《简易超市管理系统》针对的是小型的个体商户，可以实现货物进出货的管理、盈利统计、商品出售、会员管理等功能。
+# 棉花糖简易超市管理操作系统
+### Cotton Candy Simple Shop Management Operating System
 
-## 二、总体设计与分析
-1. 能够储存一定量的商品信息，能够进行增删改查。
-    a. 货物的进货、出货功能。
-    b. 盈利的统计功能。
-2. 会员的管理功能。
-    a. 会员的注册功能。
-    b. 会员的注销功能。
-    c. 会员的累积销售折扣功能。
-3. 商品的销售功能。
-    a. 商品的销售功能。
-    b. 商品的销售统计功能。
+这是一个基于C语言的简易Windows平台Dos超市管理系统，立项契机为C语言程序设计的课程设计。
 
-![P2-1](/png/main.png "P2-1")
-<p align="middle">总流程图</p>
+The project is a simple Windows platform Dos supermarket management system based on C language. The project is initiated by the course design of C language program design.
 
-## 三、模块详细设计
-### 模块 货物管理
-#### 模块 进货
-![P3-1](/png/stock.png "P3-1")
-<p align="middle">模块 进货</p>
+## 运行注意事项
+#### Attention
+程序会在运行目录下生成key.dat、vip.dat、stock.dat，如果运行目录下已有这些文件，则不会重新生成。这些文件是程序运行时需要用到的数据文件，请勿删除。建议在文件夹中运行。
 
-#### 模块 收银台
-![P3-2](/png/cashier.png "P3-2")
-<p align="middle">模块 收银台</p>
+The program will generate key.dat, vip.dat, stock.dat in the running directory. If there are already these files in the running directory, they will not be regenerated. These files are the data files needed during the program run, please do not delete them. It is recommended to run in the folder.
 
-#### 模块 销毁
-![P3-3](/png/destroy.png "P3-3")
-<p align="middle">模块 销毁</p>
 
-#### 模块 移除商品
-![P3-4](/png/remove.png "P3-4")
-<p align="middle">模块 移除商品</p>
+本产品只能在Windows下运行。
 
-#### 模块 显示库存
-![P3-5](/png/show.png "P3-5")
-<p align="middle">模块 显示库存</p>
+This product can only be run on Windows.
 
-### 模块 会员管理
-![P3-6](/png/vip.png "P3-6")
-<p align="middle">模块 会员管理</p>
+从csv文件导入数据时，请确保csv文件格式如下：
 
-## 四、任务分配
-1. 唐胡煜（组长）
-   a. 模块 显示库存：显示当前商品的库存、显示盈利最多的商品清单
-   b. 模块 会员：会员的录入、删除、查询
-   c. 模块 身份验证：进入主程序的简单密码验证
-   d. 模块 清除所有盈利记录：对历史记录的盈利数进行清除
-   e. 主程序
+Please ensure the csv file format as follows when importing data from csv:
 
-2. 孙鹏（组员）
-   a. 模块 进货：登记进货的物品以及价格
-   b. 模块 收银台：售出物品，结算价格并根据会员提供折扣
-   c. 模块 销毁：对过期的商品进行出库销毁
-   d. 模块 移除商品：从数据库中彻底移除指定商品信息
+|id|phone_number|name|last_consume_day_year|last_consume_day_month|last_consume_day_day|total_consume|
+|---|---|---|---|---|---|---|
+|1|12345678901|张三|2021|1|1|1000|
+|2|12345678902|李四|2021|1|2|2000|
+|...|...|...|...|...|...|
 
-![P4-1](/png/gantt.png "P4-1")
-<p align="middle">任务甘特图</p>
+## 程序运行截图
+#### Screenshots
+![](./png/os01.png)
+![](./png/os02.png)
+![](./png/os03.png)
+
+> 本产品技术含量较低，仅供学习交流使用，请勿用于商业用途。
+
+> This product has a low level of technical content. It is only for learning and communication. Do not use it for commercial purposes.
