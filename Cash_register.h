@@ -85,7 +85,6 @@ int casher()
         while (1)
         {
             system("cls");
-            i = 0, n = 0, m = 0;
             printf("请输入商品编号：（输入0退出并打印小票）\n");
             scanf("%llu", &EAN);
             m = i;
