@@ -37,6 +37,7 @@ int casher()
     {
         while (1)
         {
+            i = 0, n = 0, m = 0;
             receipts_length = 0;
             mode = 1;
             discount = 1;
