@@ -7,6 +7,8 @@
 #include "register.h"
 #include "ui_terminal.h"
 #include "viplib.h"
+#include "auth.h"
+
 void vip_main()
 {
     struct vip *vip_data = (struct vip *)malloc(sizeof(struct vip) * 1000);
@@ -62,6 +64,11 @@ void vip_main()
                 SetColor(15, 0);
                 break;
             case 1:
+                if(auth()!=200)
+                {
+                    printf("\nÃÜÂë´íÎó£¬²Ù×÷ÖÕÖ¹\n");
+                    break;
+                }
                 if (import_from_csv(vip_data_head, &length) == 0)
                 {
                     vip_data = vip_data_head;
