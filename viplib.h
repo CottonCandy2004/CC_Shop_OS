@@ -183,7 +183,6 @@ int import_from_csv(struct vip *vip_data_head, int *length)
             SetColor(4, 0);
             printf("已取消导入！\n");
             SetColor(15, 0);
-            system("pause");
             return -1;
         }
     }
